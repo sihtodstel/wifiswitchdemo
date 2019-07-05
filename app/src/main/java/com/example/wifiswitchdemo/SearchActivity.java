@@ -8,10 +8,18 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.MacAddress;
+import android.net.NetworkCapabilities;
+import android.net.NetworkRequest;
+import android.net.NetworkSpecifier;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.net.wifi.WifiNetworkSpecifier;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PatternMatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,6 +28,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.List;
 
@@ -31,6 +41,7 @@ public class SearchActivity extends Activity {
 
     EditText pass;
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +50,24 @@ public class SearchActivity extends Activity {
         wifiReciever = new WifiScanReceiver();
         mainWifiObj.startScan();
         list=findViewById(R.id.list);
+
+                final NetworkSpecifier specifier = new WifiNetworkSpecifier.Builder()
+                .setSsidPattern(new PatternMatcher("test", PatternMatcher.PATTERN_PREFIX))
+                .setBssidPattern(MacAddress.fromString("10:03:23:00:00:00"),
+                        MacAddress.fromString("ff:ff:ff:00:00:00"))
+                .build();
+        final NetworkRequest request =new NetworkRequest.Builder()
+                .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                .removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                .setNetworkSpecifier(specifier) .build();
+        final ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        final ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback();
+
+
+
+
+
 
         // listening to single list item on click
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -34,18 +34,6 @@ public class MainActivity extends AppCompatActivity {
                     wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                     wifiManager.getScanResults();
                     wifiManager.getConnectionInfo();
-                final NetworkSpecifier specifier = new WifiNetworkSpecifier.Builder()
-                        .setSsidPattern(new PatternMatcher("test", PatternMatcher.PATTERN_PREFIX))
-                        .setBssidPattern(MacAddress.fromString("10:03:23:00:00:00"),
-                                MacAddress.fromString("ff:ff:ff:00:00:00"))
-                        .build();
-                final NetworkRequest request =new NetworkRequest.Builder()
-                        .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-                        .removeCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-                        .setNetworkSpecifier(specifier) .build();
-                final ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext()
-                        .getSystemService(Context.CONNECTIVITY_SERVICE);
-                final ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback();
                     Intent searchwifi = new Intent(getApplicationContext(), SearchActivity.class);
                     startActivity(searchwifi);
 
