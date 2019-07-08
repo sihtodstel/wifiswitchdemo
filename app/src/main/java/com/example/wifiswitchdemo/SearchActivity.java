@@ -15,6 +15,7 @@ import android.net.NetworkRequest;
 import android.net.NetworkSpecifier;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiNetworkSpecifier;
 import android.os.Build;
@@ -38,9 +39,9 @@ public class SearchActivity extends Activity {
     WifiScanReceiver wifiReciever;
     ListView list;
     String wifis[];
-
+    NetworkSpecifier specifier;
     EditText pass;
-
+    WifiInfo wifiInfo;
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class SearchActivity extends Activity {
         mainWifiObj.startScan();
         list=findViewById(R.id.list);
 
-                final NetworkSpecifier specifier = new WifiNetworkSpecifier.Builder()
+        /*final NetworkSpecifier specifier = new WifiNetworkSpecifier.Builder()
                 .setSsidPattern(new PatternMatcher("test", PatternMatcher.PATTERN_PREFIX))
                 .setBssidPattern(MacAddress.fromString("10:03:23:00:00:00"),
                         MacAddress.fromString("ff:ff:ff:00:00:00"))
@@ -63,10 +64,7 @@ public class SearchActivity extends Activity {
         final ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         final ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback();
-
-
-
-
+*/
 
 
         // listening to single list item on click
@@ -94,11 +92,13 @@ public class SearchActivity extends Activity {
     class WifiScanReceiver extends BroadcastReceiver {
         @SuppressLint("UseValueOf")
         public void onReceive(Context c, Intent intent) {
+
             /*List<ScanResult> wifiScanList = mainWifiObj.getScanResults();
             wifis = new String[wifiScanList.size()];
             for(int i = 0; i < wifiScanList.size(); i++){
                 wifis[i] = ((wifiScanList.get(i)).toString());
             }*/
+
             List<ScanResult> wifiScanList = mainWifiObj.getScanResults();
             if (wifiScanList.size() > 0) {
                 String wifis[] = new String[wifiScanList.size()];
