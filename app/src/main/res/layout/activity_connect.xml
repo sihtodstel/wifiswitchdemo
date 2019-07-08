@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="10dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="10dp"
+    tools:context=".SearchActivity">
 
     <TextView
-    android:id="@+id/textSSID1"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+        android:id="@+id/textSSID1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textSSID1"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/okButton"
@@ -20,5 +29,4 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textPassword"
         android:text="Connect"/>
-
 </RelativeLayout>

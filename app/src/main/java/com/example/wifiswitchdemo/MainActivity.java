@@ -31,9 +31,8 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.Q)
             @Override
             public void onClick(View view) {
-                    wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-                    Intent searchwifi = new Intent(getApplicationContext(), SearchActivity.class);
-                    startActivity(searchwifi);
+                Intent searchwifi = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(searchwifi);
 
             }
         });
