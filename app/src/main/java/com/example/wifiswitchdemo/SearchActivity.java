@@ -59,6 +59,7 @@ public class SearchActivity extends ListActivity {
                 connectToWifi(ssid);
                 Toast.makeText(SearchActivity.this,"Wifi SSID : "+ssid,Toast.LENGTH_SHORT).show();
 
+
             }
         });
     }

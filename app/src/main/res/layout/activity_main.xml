@@ -10,7 +10,15 @@
         android:id="@+id/searchwifi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="wifilist"
         android:layout_centerInParent="true"
         />
+
+    <Button
+        android:id="@+id/settingswifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="settings"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"/>
 </RelativeLayout>
